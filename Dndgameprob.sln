@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{34E21EDC-E52B-4B2F-BBE9-3C50ABBEC1FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{EEC5DBDB-884F-48F6-A7CD-62B1910F90B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34E21EDC-E52B-4B2F-BBE9-3C50ABBEC1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34E21EDC-E52B-4B2F-BBE9-3C50ABBEC1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34E21EDC-E52B-4B2F-BBE9-3C50ABBEC1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34E21EDC-E52B-4B2F-BBE9-3C50ABBEC1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC5DBDB-884F-48F6-A7CD-62B1910F90B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC5DBDB-884F-48F6-A7CD-62B1910F90B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC5DBDB-884F-48F6-A7CD-62B1910F90B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC5DBDB-884F-48F6-A7CD-62B1910F90B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

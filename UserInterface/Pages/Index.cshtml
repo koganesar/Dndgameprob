@@ -1,0 +1,12 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form asp-area="" asp-page="Fight" class="user_name">
+    @Html.EditorForModel()
+    <input type="submit">
+</form>
+
+
