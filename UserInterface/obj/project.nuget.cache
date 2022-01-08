@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HopyuSXXuabwrDNWKDDWTzVVlUq1yoDiQZb5f0OMKoRHN995kQAt4QvZbI9nQ3/KPEwK5OX1G2DOnMW9KBaGUg==",
+  "dgSpecHash": "+6eMSqE4ymPGhSyuk4FGYd0AunBcldMNzDxpWOiJ3iL1ylM1DgGSriwVcHdAWG9zIKVOKijRFJLzollLLFQ6yw==",
   "success": true,
-  "projectFilePath": "/Users/a1/RiderProjects/Dndgameprob/UserInterface/UserInterface.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Mansur\\Desktop\\Dndgameprob\\UserInterface\\UserInterface.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mansur\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
   "logs": []
 }

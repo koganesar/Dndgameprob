@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kpJCzSOUWJvfab1gRcGZIt4keWqT0S72CHdQBTZgIahBq+JsqIb3p1gdle8Tr3La/2oElmXTFoiyWrk+s+v6tg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mansur\\Desktop\\Dndgameprob\\Ui\\Ui.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mansur\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
