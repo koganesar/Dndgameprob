@@ -1,12 +1,22 @@
-﻿@model UIA.Models.Character
+﻿@model UIA.Models.Fight
 
 @{
 }
+<div style="display: flex;">
+    <div style="margin-right: 100px">
+        Player:
+        @Html.DisplayFor(fight => fight.Player)
+    </div>
+    <div>
+        Monster:
+        @Html.DisplayFor(fight => fight.Monster)
+    </div>
+</div>
+<div style="margin-top: 100px">
+    @Html.DisplayForModel()
+</div>
 
-
-
-
-
-
-
-@Model.UserName
+<form method="get">
+    <input type="hidden" name="fightId" value="@Model.FightId"/>
+    <input type="submit"/>
+</form>

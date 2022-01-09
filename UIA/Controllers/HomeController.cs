@@ -1,16 +1,51 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using UIA.Models;
 
 namespace UIA.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index() => 
+        private readonly HttpClient _client = new();
+
+        public IActionResult Index() =>
             View();
-        
-        public IActionResult Fight(Character character)
+
+        private record FightStartingModel(CalculatedCharacter Player, CalculatedCharacter Monster);
+
+        [HttpPost]
+        public async Task<IActionResult> Fight(Character player)
         {
-            return View(character);
+            var t = (await _client.GetAsync("https://localhost:5001/GetRandomMonster")).Content;
+            var monster = await t.ReadFromJsonAsync<Character>();
+            t = (await _client.PostAsync("https://localhost:7299/CalculateCharacter", JsonContent.Create(monster)))
+                .Content;
+            var calculatedMonster = await t.ReadFromJsonAsync<CalculatedCharacter>();
+            t = (await _client.PostAsync("https://localhost:7299/CalculateCharacter", JsonContent.Create(player)))
+                .Content;
+            var calculatedPlayer = await t.ReadFromJsonAsync<CalculatedCharacter>();
+            t = (await _client.PostAsync("https://localhost:7299/StartFight",
+                JsonContent.Create(new FightStartingModel(calculatedPlayer, calculatedMonster)))).Content;
+            var id = Guid.Parse((await t.ReadAsStringAsync())[1..^1]);
+            return View(new Fight
+            {
+                FightId = id,
+                Player = calculatedPlayer,
+                Monster = calculatedMonster,
+                PlayerWon = null
+            });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Fight([FromQuery] Guid fightId)
+        {
+            Console.WriteLine("asdasdasdasd");
+            var t = (await _client.PostAsync($"https://localhost:7299/MakeTurn?fightId={fightId}", null!))
+                .Content;
+            return View(await t.ReadFromJsonAsync<Fight>());
         }
     }
 }

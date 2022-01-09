@@ -2,8 +2,8 @@
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataBase.Migrations
 {
@@ -14,37 +14,43 @@ namespace DataBase.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.13")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DataBase.Monster", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AC")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("AttackModifier")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("AttackPerRound")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("Damage")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
+
+                    b.Property<int>("DamageModifier")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DiceType")
+                        .HasColumnType("int");
 
                     b.Property<int>("HitPoints")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    b.Property<string>("MonsterName")
-                        .HasColumnType("text");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Weapon")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
