@@ -9,7 +9,14 @@ namespace UIA.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly HttpClient _client = new();
+        private readonly HttpClient _client;
+        public HomeController()
+        {
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true;
+            _client = new HttpClient(clientHandler);
+        }
+
 
         public IActionResult Index() =>
             View();
