@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "WRp+lLazatYoOYNM+Jx4Z7t+6onOcCR7prqK2Afuhox6MVa86J37E4k9WjQjEGQ0WEncf+7OnFe39lidDW/FXw==",
+  "dgSpecHash": "J6B6YgpGhJGo/nKB/a0t1h1mVLLgPKwq7uR2vlcucvJrL/XJIRQdprYrGCuDfxixcCXZf7TVGxlkX2CmdRgWnw==",
   "success": true,
-  "projectFilePath": "/Users/a1/RiderProjects/Dndgameprob/UIA/UIA.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Mansur\\Desktop\\Dndgameprob\\UIA\\UIA.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mansur\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
   "logs": []
 }
