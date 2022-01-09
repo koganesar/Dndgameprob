@@ -7,34 +7,32 @@ public static class FightsDealer
 {
     private static readonly Dictionary<Guid, Fight> fights = new();
 
+    private static bool Attack (CalculatedCharacter attacker, CalculatedCharacter defender)
+    {
+        for (var i = 0; i < attacker.AttackPerRound; i++)
+        {
+            defender.HitPoints -= Random.Shared.Next(attacker.DiceType) + 1 + attacker.Weapon + attacker.DamageModifier;
+            if (defender.HitPoints <= 0)
+                return true;
+        }
+        return false;
+    }
+
     public static Fight MakeTurn(Guid fightId)
     {
-        if (!fights.ContainsKey(fightId)) throw new Exception();
+        if (!fights.ContainsKey(fightId)) throw new NullReferenceException();
         var fight = fights[fightId];
         var player = fight.Player;
         var monster = fight.Monster;
-        for (var i = 0; i < player.AttackPerRound; i++)
+
+        if (Attack(player, monster))
         {
-            var random = Random.Shared.Next(player.DiceType) + 1;
-            monster.HitPoints -= random + player.Weapon + player.DamageModifier;
-            if (monster.HitPoints <= 0)
-            {
-                fight.PlayerWon = true;
-                break;
-            }
+            fight.PlayerWon = true;
+            return fight;
         }
 
-        if (fight.PlayerWon is not null && (bool) fight.PlayerWon) return fight;
-        for (var i = 0; i < monster.AttackPerRound; i++)
-        {
-            var random = Random.Shared.Next(monster.DiceType) + 1;
-            player.HitPoints -= random + monster.Weapon + monster.DamageModifier;
-            if (player.HitPoints <= 0)
-            {
-                fight.PlayerWon = false;
-                break;
-            }
-        }
+        if (Attack(monster, player))
+            fight.PlayerWon = false;
 
         return fight;
     }
@@ -42,7 +40,9 @@ public static class FightsDealer
     public static Guid CreateFight(FightsController.FightStartingModel model)
     {
         var guid = Guid.NewGuid();
-        var (player, monster) = model;
+        var player = model.Player;
+        var monster = model.Monster;
+
         var fight = new Fight
         {
             FightId = guid,
@@ -50,6 +50,7 @@ public static class FightsDealer
             Monster = monster,
             PlayerWon = null
         };
+
         fights.Add(guid, fight);
         return guid;
     }

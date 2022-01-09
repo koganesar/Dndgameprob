@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace DataBase.Controllers
 {
@@ -12,51 +11,50 @@ namespace DataBase.Controllers
         [HttpGet]
         public IActionResult GetRandomMonster([FromServices] AppDataContext appDataContext)
         {
-            if (appDataContext.Monsters.Count() is 0)
+            if (appDataContext.Monsters.Count() == 0)
             {
-                appDataContext.Add(new Monster
+                appDataContext.Monsters.Add(new Monster
                 {
-                    Name = "Лемур",
-                    HitPoints = 13,
+                    Name = "Zombie",
+                    HitPoints = 133,
                     AttackModifier = 3,
-                    AttackPerRound = 1,
-                    Damage = 1,
-                    DiceType = 4,
-                    DamageModifier = 0,
-                    Weapon = 0,
-                    AC = 7
-                });
-                appDataContext.Add(new Monster
-                {
-                    Name = "Мамонт",
-                    HitPoints = 126,
-                    AttackModifier = 10,
-                    AttackPerRound = 1,
+                    AttackPerRound = 2,
                     Damage = 4,
-                    DiceType = 8,
-                    DamageModifier = 7,
+                    DiceType = 3,
+                    DamageModifier = 2,
                     Weapon = 0,
-                    AC = 13
+                    AC = 5
                 });
-                appDataContext.Add(new Monster
+                appDataContext.Monsters.Add(new Monster
                 {
-                    Name = "Аболет",
-                    HitPoints = 135,
-                    AttackModifier = 9,
-                    AttackPerRound = 3,
-                    Damage = 2,
-                    DiceType = 6,
+                    Name = "Skeleton",
+                    HitPoints = 90,
+                    AttackModifier = 11,
+                    AttackPerRound = 2,
+                    Damage = 6,
+                    DiceType = 5,
                     DamageModifier = 5,
                     Weapon = 0,
-                    AC = 17
+                    AC = 11
+                });
+                appDataContext.Monsters.Add(new Monster
+                {
+                    Name = "Witch",
+                    HitPoints = 110,
+                    AttackModifier = 11,
+                    AttackPerRound = 2,
+                    Damage = 3,
+                    DiceType = 6,
+                    DamageModifier = 6,
+                    Weapon = 0,
+                    AC = 12
                 });
                 appDataContext.SaveChanges();
             }
 
-            var count = appDataContext.Monsters.Count();
-            var random = new Random().Next(count);
-            var monster = (random > 0 ? appDataContext.Monsters.Skip(random) : appDataContext.Monsters).First();
-            return new JsonResult(monster);
+            return new JsonResult(appDataContext.Monsters.Skip(new Random().Next(appDataContext.Monsters.Count()))
+                .First());
+
         }
     }
 }

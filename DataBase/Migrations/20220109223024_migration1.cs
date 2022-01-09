@@ -2,7 +2,7 @@
 
 namespace DataBase.Migrations
 {
-    public partial class asd : Migration
+    public partial class migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
