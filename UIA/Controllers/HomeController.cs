@@ -42,7 +42,6 @@ namespace UIA.Controllers
         [HttpGet]
         public async Task<IActionResult> Fight([FromQuery] Guid fightId)
         {
-            Console.WriteLine("asdasdasdasd");
             var t = (await _client.PostAsync($"https://localhost:7299/MakeTurn?fightId={fightId}", null!))
                 .Content;
             return View(await t.ReadFromJsonAsync<Fight>());

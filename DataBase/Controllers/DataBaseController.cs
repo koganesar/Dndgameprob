@@ -16,39 +16,39 @@ namespace DataBase.Controllers
             {
                 appDataContext.Add(new Monster
                 {
-                    Name = "qwe",
-                    HitPoints = 0,
-                    AttackModifier = 0,
-                    AttackPerRound = 0,
-                    Damage = 0,
-                    DiceType = 0,
+                    Name = "Лемур",
+                    HitPoints = 13,
+                    AttackModifier = 3,
+                    AttackPerRound = 1,
+                    Damage = 1,
+                    DiceType = 4,
                     DamageModifier = 0,
                     Weapon = 0,
-                    AC = 0
+                    AC = 7
                 });
                 appDataContext.Add(new Monster
                 {
-                    Name = "asd",
-                    HitPoints = 0,
-                    AttackModifier = 0,
-                    AttackPerRound = 0,
-                    Damage = 0,
-                    DiceType = 0,
-                    DamageModifier = 0,
+                    Name = "Мамонт",
+                    HitPoints = 126,
+                    AttackModifier = 10,
+                    AttackPerRound = 1,
+                    Damage = 4,
+                    DiceType = 8,
+                    DamageModifier = 7,
                     Weapon = 0,
-                    AC = 0
+                    AC = 13
                 });
                 appDataContext.Add(new Monster
                 {
-                    Name = "zxc",
-                    HitPoints = 0,
-                    AttackModifier = 0,
-                    AttackPerRound = 0,
-                    Damage = 0,
-                    DiceType = 0,
-                    DamageModifier = 0,
+                    Name = "Аболет",
+                    HitPoints = 135,
+                    AttackModifier = 9,
+                    AttackPerRound = 3,
+                    Damage = 2,
+                    DiceType = 6,
+                    DamageModifier = 5,
                     Weapon = 0,
-                    AC = 0
+                    AC = 17
                 });
                 appDataContext.SaveChanges();
             }
