@@ -36,6 +36,9 @@ namespace UIA.Controllers
         [HttpPost]
         public async Task<IActionResult> Fight(Character player)
         {
+            if(player.Name==null)
+                player.Name = "Alsu";
+            
             var t = (await _client.GetAsync("https://localhost:5001/GetRandomMonster")).Content;
             var monster = await t.ReadFromJsonAsync<Character>();
             t = (await _client.PostAsync("https://localhost:7299/CalculateCharacter", JsonContent.Create(monster)))

@@ -12,4 +12,8 @@
         @Html.DisplayFor(fight => fight.Monster)
     </div>
 </div>
-@Model.Log
+
+@foreach(var str in Model.Log.Split('\n'))
+{
+<p>@str</p>
+}
