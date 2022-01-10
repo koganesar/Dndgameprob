@@ -10,11 +10,21 @@ public class FightsController : ControllerBase
 {
     public record FightStartingModel(CalculatedCharacter Player, CalculatedCharacter Monster);
 
-    [HttpPost]
-    public IActionResult StartFight(FightStartingModel model) => 
-        Ok(FightsDealer.CreateFight(model));
 
+    public class FightStart
+    {
+        public Character Player { get; set; }
+        public Character Monster { get; set; }
+    }
+    private class FightResult
+    {
+        public string Log { get; set; }
+    }
     [HttpPost]
-    public IActionResult MakeTurn([FromQuery]Guid fightId) =>
-        new JsonResult(FightsDealer.MakeTurn(fightId));
+    public IActionResult MakeTurn(FightStart fightStart)
+    {
+        var log = FightsDealer.Fight(fightStart.Player, fightStart.Monster);
+        Console.WriteLine(log);
+        return new JsonResult(new FightResult {Log = log});
+    }
 }

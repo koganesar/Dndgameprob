@@ -1,22 +1,15 @@
-﻿@model UIA.Models.Fight
+﻿@model UIA.Controllers.HomeController.FightModel
 
 @{
 }
-<div style="display: flex;">
+<div style="display: flex; ">
     <div style="margin-right: 100px">
-        Player:
+        <p style="color:blue;">Player:</p>
         @Html.DisplayFor(fight => fight.Player)
     </div>
-    <div>
-        Monster:
+    <div style="margin-left: 300px;">
+        <p style="color:red;">Monster:</p>
         @Html.DisplayFor(fight => fight.Monster)
     </div>
 </div>
-<div style="margin-top: 100px">
-    @Html.DisplayForModel()
-</div>
-
-<form method="get">
-    <input type="hidden" name="fightId" value="@Model.FightId"/>
-    <input type="submit"/>
-</form>
+@Model.Log

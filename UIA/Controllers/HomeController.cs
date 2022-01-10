@@ -21,8 +21,18 @@ namespace UIA.Controllers
         public IActionResult Index() =>
             View();
 
-        private record FightStartingModel(CalculatedCharacter Player, CalculatedCharacter Monster);
+        private record FightStartingModel(Character Player, Character Monster);
 
+        public class FightModel
+        {
+            public CalculatedCharacter Player { get; set; }
+            public CalculatedCharacter Monster { get; set; }
+            public string Log { get; set; }
+        }
+        private class FightResult
+        {
+            public string Log { get; set; }
+        }
         [HttpPost]
         public async Task<IActionResult> Fight(Character player)
         {
@@ -34,24 +44,16 @@ namespace UIA.Controllers
             t = (await _client.PostAsync("https://localhost:7299/CalculateCharacter", JsonContent.Create(player)))
                 .Content;
             var calculatedPlayer = await t.ReadFromJsonAsync<CalculatedCharacter>();
-            t = (await _client.PostAsync("https://localhost:7299/StartFight",
+            t = (await _client.PostAsync("https://localhost:7299/MakeTurn",
                 JsonContent.Create(new FightStartingModel(calculatedPlayer, calculatedMonster)))).Content;
-            var id = Guid.Parse((await t.ReadAsStringAsync())[1..^1]);
-            return View(new Fight
+            Console.WriteLine(await t.ReadAsStringAsync());
+            var log = (await t.ReadFromJsonAsync<FightResult>())!.Log;
+            return View(new FightModel
             {
-                FightId = id,
                 Player = calculatedPlayer,
                 Monster = calculatedMonster,
-                PlayerWon = null
+                Log = log
             });
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Fight([FromQuery] Guid fightId)
-        {
-            var t = (await _client.PostAsync($"https://localhost:7299/MakeTurn?fightId={fightId}", null!))
-                .Content;
-            return View(await t.ReadFromJsonAsync<Fight>());
         }
     }
 }

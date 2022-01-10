@@ -1,56 +1,59 @@
-﻿using Business.Controllers;
+﻿using System.Text;
+using Business.Controllers;
 using Business.Models;
 
 namespace Business.Services;
 
 public static class FightsDealer
 {
-    private static readonly Dictionary<Guid, Fight> fights = new();
 
-    public static Fight MakeTurn(Guid fightId)
+    public static string Fight(Character player, Character monster)
     {
-        if (!fights.ContainsKey(fightId)) throw new Exception();
-        var fight = fights[fightId];
-        var player = fight.Player;
-        var monster = fight.Monster;
-        for (var i = 0; i < player.AttackPerRound; i++)
+        var stringBuilder = new StringBuilder();
+        while (true)
         {
-            var random = Random.Shared.Next(player.DiceType) + 1;
-            monster.HitPoints -= random + player.Weapon + player.DamageModifier;
-            if (monster.HitPoints <= 0)
+            for (var i = 0; i < player.AttackPerRound; i++)
             {
-                fight.PlayerWon = true;
-                break;
+                var randomsum = 0;
+                var randomAC = Random.Shared.Next(20) + 1;
+                for (var j = 0; j < player.Damage; j++)
+                {
+                    var random = Random.Shared.Next(player.DiceType) + 1;
+                    randomsum += random;
+                }
+
+                if (monster.AC <= randomAC + player.Weapon + player.AttackModifier)
+                {
+                    monster.HitPoints -= randomsum + player.Weapon + player.DamageModifier;
+                    if (monster.HitPoints <= 0)
+                    {
+                        stringBuilder.Append($"{player.Name} won\n");
+                        return stringBuilder.ToString();
+                    }
+                }
+            }
+
+            for (var i = 0; i < monster.AttackPerRound; i++)
+            {
+                var randomsum = 0;
+                var randomAC = Random.Shared.Next(20) + 1;
+                for (var j = 0; j < monster.Damage; j++)
+                {
+                    var random = Random.Shared.Next(monster.DiceType) + 1;
+                    randomsum += random;
+                }
+
+                if (player.AC <= randomAC + monster.Weapon + monster.AttackModifier)
+                {
+                    player.HitPoints -= randomsum + monster.Weapon + monster.DamageModifier;
+                    if (player.HitPoints <= 0)
+                    {
+                        stringBuilder.Append($"{monster.Name} won");
+                        return stringBuilder.ToString();
+                    }
+                }
+
             }
         }
-
-        if (fight.PlayerWon is not null && (bool) fight.PlayerWon) return fight;
-        for (var i = 0; i < monster.AttackPerRound; i++)
-        {
-            var random = Random.Shared.Next(monster.DiceType) + 1;
-            player.HitPoints -= random + monster.Weapon + monster.DamageModifier;
-            if (player.HitPoints <= 0)
-            {
-                fight.PlayerWon = false;
-                break;
-            }
-        }
-
-        return fight;
-    }
-
-    public static Guid CreateFight(FightsController.FightStartingModel model)
-    {
-        var guid = Guid.NewGuid();
-        var (player, monster) = model;
-        var fight = new Fight
-        {
-            FightId = guid,
-            Player = player,
-            Monster = monster,
-            PlayerWon = null
-        };
-        fights.Add(guid, fight);
-        return guid;
     }
 }

@@ -6038,34 +6038,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mansur\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet": {}
+    "/Users/a1/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mansur\\Desktop\\Dndgameprob\\DataBase\\DataBase.csproj",
+      "projectUniqueName": "/Users/a1/RiderProjects/Dndgameprob/DataBase/DataBase.csproj",
       "projectName": "DataBase",
-      "projectPath": "C:\\Users\\Mansur\\Desktop\\Dndgameprob\\DataBase\\DataBase.csproj",
-      "packagesPath": "C:\\Users\\Mansur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mansur\\Desktop\\Dndgameprob\\DataBase\\obj\\",
+      "projectPath": "/Users/a1/RiderProjects/Dndgameprob/DataBase/DataBase.csproj",
+      "packagesPath": "/Users/a1/.nuget/packages/",
+      "outputPath": "/Users/a1/RiderProjects/Dndgameprob/DataBase/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Mansur\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/a1/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6119,8 +6109,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.12, 5.0.12]"
+            "name": "Microsoft.NETCore.App.Host.osx-x64",
+            "version": "[5.0.13, 5.0.13]"
           }
         ],
         "frameworkReferences": {
@@ -6131,7 +6121,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
       }
     }
   }
