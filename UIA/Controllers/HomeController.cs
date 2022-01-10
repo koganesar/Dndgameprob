@@ -16,8 +16,7 @@ namespace UIA.Controllers
             clientHandler.ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true;
             _client = new HttpClient(clientHandler);
         }
-
-
+        
         public IActionResult Index() =>
             View();
 
@@ -28,9 +27,11 @@ namespace UIA.Controllers
             public CalculatedCharacter Player { get; set; }
             public CalculatedCharacter Monster { get; set; }
             public string Log { get; set; }
+            public Character SavedPlayer { get; set; }
         }
         private class FightResult
         {
+            public Character Player { get; set; }
             public string Log { get; set; }
         }
         [HttpPost]
@@ -50,12 +51,13 @@ namespace UIA.Controllers
             t = (await _client.PostAsync("https://localhost:7299/MakeTurn",
                 JsonContent.Create(new FightStartingModel(calculatedPlayer, calculatedMonster)))).Content;
             Console.WriteLine(await t.ReadAsStringAsync());
-            var log = (await t.ReadFromJsonAsync<FightResult>())!.Log;
+            var fightResult = (await t.ReadFromJsonAsync<FightResult>());
             return View(new FightModel
             {
                 Player = calculatedPlayer,
                 Monster = calculatedMonster,
-                Log = log
+                Log = fightResult.Log,
+                SavedPlayer = fightResult.Player,
             });
         }
     }

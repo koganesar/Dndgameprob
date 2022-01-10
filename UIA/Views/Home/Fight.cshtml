@@ -2,6 +2,29 @@
 
 @{
 }
+
+<form style="display: flex; flex-direction: column" asp-controller="Home" asp-action="Fight" method="post">
+    Name:
+    <input name="Name" value="@Model.SavedPlayer.Name"/>
+    HitPoints:
+    <input name="HitPoints" value="@Model.SavedPlayer.HitPoints"/>
+    AttackModifier:
+    <input name="AttackModifier" value="@Model.SavedPlayer.AttackModifier"/>
+    AttackPerRound:
+    <input name="AttackPerRound" value="@Model.SavedPlayer.AttackPerRound"/>
+    Damage:
+    <input name="Damage" value="@Model.SavedPlayer.Damage"/>
+    DiceType:
+    <input name="DiceType" value="@Model.SavedPlayer.DiceType"/>
+    DamageModifier:
+    <input name="DamageModifier" value="@Model.SavedPlayer.DamageModifier"/>
+    Weapon:
+    <input name="Weapon" value="@Model.SavedPlayer.Weapon"/>
+    AC:
+    <input name="AC" value="@Model.SavedPlayer.AC"/>
+    <input type="submit"/>
+</form>
+
 <div style="display: flex; ">
     <div style="margin-right: 100px">
         <p style="color:blue;">Player:</p>

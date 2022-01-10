@@ -16,15 +16,18 @@ public class FightsController : ControllerBase
         public Character Player { get; set; }
         public Character Monster { get; set; }
     }
+
     private class FightResult
     {
+        public Character Player { get; set; }
         public string Log { get; set; }
     }
+
     [HttpPost]
     public IActionResult MakeTurn(FightStart fightStart)
     {
         var log = FightsDealer.Fight(fightStart.Player, fightStart.Monster);
         Console.WriteLine(log);
-        return new JsonResult(new FightResult {Log = log});
+        return new JsonResult(new FightResult {Player = fightStart.Player, Log = log});
     }
 }
